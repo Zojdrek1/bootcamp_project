@@ -77,6 +77,11 @@ void keyPressed() {
   if (key == 'd' || key == 'D') {
     rightMove = true;
   }
+  
+  if (key == ' ') {
+    GameStart = true;
+    level += 1;
+  }
 }
 
 

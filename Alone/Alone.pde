@@ -26,8 +26,10 @@ int playerRunForce = 8;
 int gravityStrength = 7;
 
 boolean GameStart = false;
+boolean GameFinish = false;
 
 int time;
+int timeGot;
 
 
 void setup() {
@@ -54,11 +56,12 @@ void draw() {
 
   
 
-  if (!GameStart) {
+  if (!GameStart && !GameFinish) {
     StartMenu();
-  } else {
+  } else if (GameStart && !GameFinish) {
     // Time
     time = frameCount / 60;
+    textSize(25);
     textAlign(LEFT);
     text(("Level: "+level+"  -  Time: "+time), 80, 30);
     Levels();
@@ -76,5 +79,9 @@ void draw() {
     for (int i=0; i<playerRunForce; i++) {
       PlayerMovement();
     }
+  } else if (GameFinish) {
+    textSize(25);
+    textAlign(CENTER);
+    text("Thanks for playing Alone.\n How quick were you to finish all the levels?\n\n Your Time: "+timeGot+" seconds", width/2, height/2);
   }
 }

@@ -1,12 +1,12 @@
-int level = 5;
+int level = 0;
 
 public interface Test {
   void test();
 }
 
 // Spawn & Next Level Btn
-int[] spawnsX = {47, 47, 370, 370, 370, 270};
-int[] spawnsY = {520, 520, 520, 520, 520, 520};
+int[] spawnsX = {47, 47, 370, 370, 370, 270, 270, -50};
+int[] spawnsY = {520, 520, 520, 520, 520, 520, 520, 2000};
 StartNext nextLvlRect;
 
 // Ground - All Levels
@@ -28,15 +28,15 @@ void NextLevelCol() {
 }
 
 void DrawPlatforms(int[] level_cords) {
-    int b = 1;
-    for (int i=0; i<level_cords.length; i+=2) {
-      level_platforms[b] = new Platform(level_cords[i], level_cords[i+1], 100, 20, ("PLAT_"+b));
-      b+=1;
-    }
+  int b = 1;
+  for (int i=0; i<level_cords.length; i+=2) {
+    level_platforms[b] = new Platform(level_cords[i], level_cords[i+1], 100, 20, ("PLAT_"+b));
+    b+=1;
+  }
 
-    for (Platform i : level_platforms) {
-      i.draw();
-    }
+  for (Platform i : level_platforms) {
+    i.draw();
+  }
 }
 
 void Levels() {
@@ -57,7 +57,7 @@ void Levels() {
     level_platforms[0] = new Platform(-10, height-50, width+10, 50, "GROUND");
 
     DrawPlatforms(level_cords);
-       
+
     NextLevelCol();
   }
 
@@ -73,10 +73,10 @@ void Levels() {
     level_platforms[0] = new Platform(-10, height-50, width+10, 50, "GROUND");
 
     DrawPlatforms(level_cords);
-       
+
     NextLevelCol();
   }
-  
+
   if (level == 3) {
     nextLvlRect = new StartNext("end", 375+25+12, 66-28);
     nextLvlRect.draw();
@@ -89,7 +89,7 @@ void Levels() {
     level_platforms[0] = new Platform(-10, height-50, width+10, 50, "GROUND");
 
     DrawPlatforms(level_cords);
-       
+
     NextLevelCol();
   }
   if (level == 4) {
@@ -104,10 +104,10 @@ void Levels() {
     level_platforms[0] = new Platform(-10, height-50, width+10, 50, "GROUND");
 
     DrawPlatforms(level_cords);
-       
+
     NextLevelCol();
   }
-  
+
   if (level == 5) {
     nextLvlRect = new StartNext("end", 657+25+12, 253-28);
     nextLvlRect.draw();
@@ -120,7 +120,28 @@ void Levels() {
     level_platforms[0] = new Platform(-10, height-50, width+10, 50, "GROUND");
 
     DrawPlatforms(level_cords);
-       
+
     NextLevelCol();
+  }
+
+  if (level == 6) {
+    nextLvlRect = new StartNext("end", 245+25+12, 72-28);
+    nextLvlRect.draw();
+
+    fill(#ffffff);
+    int[] level_cords = {79, 512, 315, 479, 601, 453, 106, 386, 378, 384, 657, 347, 204, 290, 458, 285, 657, 240, 39, 224, 294, 219, 523, 180, 683, 117, 138, 148, 380, 123, 553, 66, 245, 72, 20, 103};
+    level_platforms = new Platform[level_cords.length/2 +1];
+
+    // Ground
+    level_platforms[0] = new Platform(-10, height-50, width+10, 50, "GROUND");
+
+    DrawPlatforms(level_cords);
+
+    NextLevelCol();
+  }
+  
+  if (level == 7) {
+    GameFinish = true;
+    timeGot = time;
   }
 }
