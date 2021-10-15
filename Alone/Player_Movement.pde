@@ -80,6 +80,7 @@ void keyPressed() {
   
   if (key == ' ') {
     GameStart = true;
+    frameCount = 0;
     level += 1;
   }
 }
